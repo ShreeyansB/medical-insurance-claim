@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <HStack
       w="100%"
-      py={5}
+      py={4}
       justify="space-between"
       px={{ base: "1.5rem", md: "3rem" }}
       zIndex={2}
@@ -20,7 +20,7 @@ const Header = () => {
       top={0}
     >
       <Link href="/">
-        <BrandLogo width="80px" />
+        <BrandLogo width="70px" />
       </Link>
       <Button variant="ghost" onClick={themeToggleHandler}>
         <Icon as={CgDarkMode} w="1.3rem" h="1.3rem" />
