@@ -8,6 +8,9 @@ const theme = extendTheme({
     heading: "Plus Jakarta Sans, sans-serif",
     body: "Roboto, sans-serif",
   },
+  shadows: {
+    outline: '0 0 0 2.5px #61f2c9'
+  },
   styles: {
     global: (props) => ({
       "html, body": {

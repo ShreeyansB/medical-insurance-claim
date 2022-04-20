@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Heading, Show, VStack } from "@chakra-ui/react";
 import { HStack } from "@chakra-ui/react";
-import FadeIn from "../common/FadeIn";
+import FadeIn from "./FadeIn";
 
 const SideArt = () => {
   return (
     <Show breakpoint="(min-width: 950px)">
-      <Box h="100vh">
+      <Box h="100vh" position="fixed" left="0" top="0">
         <HStack h="100%" p={0}>
           <Box bg="green.300" h="100%" w="450px" px="2.9rem" pt="5rem">
             <VStack justify="space-between" h="100%">
