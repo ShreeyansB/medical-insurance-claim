@@ -11,18 +11,89 @@ import {
   RadioGroup,
   Show,
   useColorModeValue,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/Auth";
+import { useDB } from "../../contexts/Database";
 import FadeIn from "../common/FadeIn";
 import SideArt from "../common/SideArt";
+import { SHA256 } from "crypto-js";
 
 const SignupForm = () => {
   const navigate = useNavigate();
+  const toast = useToast();
+  const { signUp } = useAuth();
+  const { setUserDataOnSignUp, tokenData } = useDB();
+
+  const [formIsLoading, setFormIsLoading] = useState(false);
 
   const switchToSignInHandler = () => {
-    navigate("/signin");
+    navigate("/signin", { replace: true });
+  };
+
+  const signupHandler = async (e) => {
+    e.preventDefault();
+    setFormIsLoading(true);
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      accountType: e.target.account_type.value,
+      typeToken: e.target.type_token.value,
+    };
+
+    if (
+      formData.accountType === "insurer" ||
+      formData.accountType === "hospital"
+    ) {
+      const encToken = SHA256(formData.typeToken).toString();
+      if (
+        encToken !==
+        tokenData.find((item) => item.type === formData.accountType).token
+      ) {
+        toast({
+          title: "Error",
+          description: "Token is not valid.",
+          status: "error",
+          duration: 6000,
+          isClosable: true,
+          position: "top",
+        });
+        setFormIsLoading(false);
+        return;
+      }
+    }
+
+    const { user, error } = await signUp({
+      email: formData.email,
+      password: formData.password,
+    });
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: JSON.stringify(error.message),
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+        position: "top",
+      });
+    } else {
+      setUserDataOnSignUp(user, formData);
+      toast({
+        title: "Account created.",
+        description: "Please check your email for confirmation.",
+        status: "success",
+        duration: 6000,
+        isClosable: true,
+        position: "top",
+      });
+    }
+    setFormIsLoading(false);
   };
 
   return (
@@ -48,8 +119,8 @@ const SignupForm = () => {
             >
               Sign &nbsp;up &nbsp;for &nbsp;MIC
             </Heading>
-            <form style={{ width: "100%" }}>
-              <FormControl pt="3rem">
+            <form style={{ width: "100%" }} onSubmit={signupHandler}>
+              <FormControl pt="3rem" isDisabled={formIsLoading}>
                 <FormLabel htmlFor="name">Name</FormLabel>
                 <Input
                   id="name"
@@ -85,20 +156,16 @@ const SignupForm = () => {
                   Account Type
                 </FormLabel>
                 <RadioGroup
-                  name="form-name"
+                  name="account_type"
                   colorScheme="whatsapp"
                   defaultValue="insured"
                 >
                   <HStack spacing={4}>
-                    <Radio value="insured" name="insured" defaultChecked>
+                    <Radio value="insured" defaultChecked>
                       Insured
                     </Radio>
-                    <Radio value="hospital" name="hospital">
-                      Hospital
-                    </Radio>
-                    <Radio value="insurer" name="insurer">
-                      Insurer
-                    </Radio>
+                    <Radio value="hospital">Hospital</Radio>
+                    <Radio value="insurer">Insurer</Radio>
                   </HStack>
                 </RadioGroup>
                 <FormLabel
@@ -122,6 +189,7 @@ const SignupForm = () => {
                 px="2rem"
                 mt="3rem"
                 type="submit"
+                isLoading={formIsLoading}
               >
                 Sign Up
               </Button>

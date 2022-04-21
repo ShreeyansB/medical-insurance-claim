@@ -9,18 +9,54 @@ import {
   Input,
   Show,
   useColorModeValue,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/Auth";
 import FadeIn from "../common/FadeIn";
 import SideArt from "../common/SideArt";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const toast = useToast();
+  const { signIn } = useAuth();
+
+  const [formIsLoading, setFormIsLoading] = useState(false);
 
   const switchToSignUpHandler = () => {
-    navigate("/signup");
+    navigate("/signup", { replace: true });
+  };
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    setFormIsLoading(true);
+    const formData = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+
+    const { error } = await signIn({
+      email: formData.email,
+      password: formData.password,
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+        position: "top",
+      });
+      setFormIsLoading(false);
+    } else {
+      navigate("/dashboard");
+    }
   };
 
   return (
@@ -47,8 +83,8 @@ const LoginForm = () => {
               Sign &nbsp;in &nbsp;to &nbsp;MIC
             </Heading>
 
-            <form style={{ width: "100%" }}>
-              <FormControl pt="3rem">
+            <form style={{ width: "100%" }} onSubmit={loginHandler}>
+              <FormControl pt="3rem" isDisabled={formIsLoading}>
                 <FormLabel htmlFor="email">Email address</FormLabel>
                 <Input
                   id="email"
@@ -79,6 +115,7 @@ const LoginForm = () => {
                 px="2rem"
                 mt="3rem"
                 type="submit"
+                isLoading={formIsLoading}
               >
                 Sign In
               </Button>
