@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# medical-insurance-claim
+This website was made as a concept for implementing the insurance claim process with the help of the blockchain and smart contracts.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### How it Works
+1. User Signs Up on the website and enters their details.
+2. User files an Insurance Claim by filling details and uploading a pdf of medical and lab bills. The claim is then sent to the smart contract and the pdf is uploaded in storage. Pdf is hashed and the hash is stored on the blockchain to avoid any problems if a dispute occurs.
+3. The Hospital then verifies the claim details and bills and approves/denies it on their side which gets recorded on the Blockchain.
+4. The Insurer checks the claim and then approves/denies the claim which also gets recorded on the blockchain.
+5. If claim is approved, the Insurer then pays the User. If rejected the reason for it is also recorded in the blockchain.
+6. Along this process, the User can check the status of the Claim as changes occur.
 
-## Available Scripts
+### Tech Used
+mic uses a number of open source projects to work properly:
 
-In the project directory, you can run:
+- [React](https://reactjs.org/) - JS Library for building UIs
+- [ChakraUI](https://chakra-ui.com/) - Awesome Component Library
+- [Moralis](https://moralis.io) - Smart Contract Event Indexing
+- [Supabase](https://supabase.com/) - Open-source Backend as a Service
+- [boring-avatars](https://boringavatars.com/) - API for generating unique avatars
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Improvements
+ - **Switch to IPFS:** This was part of a Uni project and I did not have enough time to implement IPFS. So I chose to store the file hash instead.
+ <br>*.....*
+ 
+### Screenshots
+![ss1](https://user-images.githubusercontent.com/37953798/166552263-ce583b47-2ad2-430f-8402-7d7ce584597e.png)
+<br>
+![ss2](https://user-images.githubusercontent.com/37953798/166552271-9692f4f6-e3bb-46c9-a7c8-1922b1485bd7.png)
+<br>
+![ss3](https://user-images.githubusercontent.com/37953798/166552278-ada8a9bc-06c5-4d51-8737-0f47f1af7f3b.png)
+ 
+## License
+MIT
