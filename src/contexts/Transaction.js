@@ -19,7 +19,10 @@ export const TransactionProvider = ({ children }) => {
 
   const checkIfWalletConnected = async () => {
     try {
-      if (!ethereum) return alert("Please install Metamask");
+      if (!ethereum) {
+        if (!alert("Please install Metamask!"))
+          document.location = "https://metamask.io/";
+      }
 
       const accounts = await ethereum.request({ method: "eth_accounts" });
       if (accounts.length) {
@@ -159,11 +162,13 @@ export const TransactionProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getEthereumContract();
-    checkIfWalletConnected();
-    getEvents();
-
-    return () => {};
+    try {
+      checkIfWalletConnected();
+      getEthereumContract();
+      getEvents();
+    } catch (e) {
+      console.log(e);
+    }
   }, [reloadCtr]);
 
   return (
