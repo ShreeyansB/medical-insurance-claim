@@ -1,4 +1,3 @@
-import { SHA256 } from "crypto-js";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
 import { supabase } from "./../supabaseClient";
@@ -36,6 +35,26 @@ export function DBProvider({ children }) {
     reset: () => {
       setUserData([]);
       setReloadCtr((prev) => prev + 1);
+    },
+    uploadFile: async (input) => {
+      try {
+        const { data, error } = await supabase.storage
+          .from("files")
+          .upload(input.user + "/" + input.file.name, input.file, {
+            upsert: false,
+          });
+
+        return { data, error };
+      } catch (e) {
+        return { error: e };
+      }
+    },
+
+    deleteFile: async (path) => {
+      const storageResponse = await supabase.storage
+        .from("files")
+        .remove([path]);
+      return { ...storageResponse };
     },
   };
 

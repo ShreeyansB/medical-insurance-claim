@@ -2,6 +2,7 @@ import { Button, HStack, Icon, Link, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import { CgDarkMode } from "react-icons/cg";
 import BrandLogo from "./../../svg/BrandLogo";
+import UserButton from "./UserButton";
 const Header = () => {
   const { toggleColorMode } = useColorMode();
 
@@ -22,9 +23,12 @@ const Header = () => {
       <Link href="/">
         <BrandLogo width="70px" />
       </Link>
-      <Button variant="ghost" onClick={themeToggleHandler}>
-        <Icon as={CgDarkMode} w="1.3rem" h="1.3rem" />
-      </Button>
+      <HStack>
+        <Button variant="ghost" onClick={themeToggleHandler}>
+          <Icon as={CgDarkMode} w="1.3rem" h="1.3rem" />
+        </Button>
+        <UserButton />
+      </HStack>
     </HStack>
   );
 };

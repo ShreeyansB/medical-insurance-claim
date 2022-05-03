@@ -14,7 +14,7 @@ const Error = () => {
       <Heading fontSize="5xl" color="green.300">
         ERROR
       </Heading>
-      <Heading fontFamily="monospace" fontSize="6rem">
+      <Heading fontFamily="Roboto Mono" fontSize="6rem">
         404
       </Heading>
       <Text

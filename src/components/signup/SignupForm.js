@@ -94,6 +94,7 @@ const SignupForm = () => {
       });
     }
     setFormIsLoading(false);
+    navigate("/signin", { replace: true });
   };
 
   return (

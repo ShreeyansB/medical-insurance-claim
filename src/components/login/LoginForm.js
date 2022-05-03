@@ -106,9 +106,9 @@ const LoginForm = () => {
                   focusBorderColor="#61f2c9"
                 />
               </FormControl>
-              <Button variant="ghost" size="xs" mt={5} float="right">
+              {/* <Button variant="ghost" size="xs" mt={5} float="right">
                 Forgot Password
-              </Button>
+              </Button> */}
               <Button
                 colorScheme="whatsapp"
                 size="md"
