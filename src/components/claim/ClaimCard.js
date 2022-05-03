@@ -36,12 +36,12 @@ const ClaimCard = ({ record }) => {
       w="100%"
       justify="space-between"
     >
-      <VStack align="start" spacing={5}>
+      <VStack align="start" spacing={5} >
         <HStack align="start">
           <Text fontSize="0.8rem" fontWeight="medium" opacity={0.4} minW="5rem">
             Claimant:{" "}
           </Text>
-          <Box>
+          <Box maxW={{ base: "50vw", md: "" }}>
             <Text fontFamily="Roboto Mono" fontSize="0.85rem">
               {record.patientAddr}
             </Text>
@@ -51,7 +51,7 @@ const ClaimCard = ({ record }) => {
           <Text fontSize="0.8rem" fontWeight="medium" opacity={0.4} minW="5rem">
             Hospital:{" "}
           </Text>
-          <Box>
+          <Box maxW={{ base: "50vw", md: "" }}>
             <Text fontFamily="Roboto Mono" fontSize="0.85rem">
               {record.hospitalAddr}
             </Text>
@@ -108,7 +108,7 @@ const ClaimCard = ({ record }) => {
               <Text
                 fontFamily="Roboto Mono"
                 fontSize="0.85rem"
-                maxWidth="17rem"
+                maxW={{ base: "50vw", md: "17rem" }}
               >
                 <b>SHA256:</b> {billData.billHash}
               </Text>
