@@ -109,7 +109,7 @@ const ClaimCard = ({ record }) => {
                 fontFamily="Roboto Mono"
                 fontSize="0.85rem"
                 maxW={{ base: "50vw", md: "17rem" }}
-              >
+              > 
                 <b>SHA256:</b> {billData.billHash}
               </Text>
             </Box>

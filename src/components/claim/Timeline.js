@@ -1,10 +1,31 @@
-import { Avatar, Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import {
+  Avatar,
+  Heading,
+  HStack,
+  Text,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
 const Timeline = ({ record }) => {
   const [signs, setSigns] = useState([]);
+  const toast = useToast();
+
+  const copyToClipboard = (data) => {
+    let temp = document.createElement("textarea");
+    temp.value = data;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+    toast({
+      title: "Copied to Clipboard",
+      status: "info",
+    });
+  };
 
   useEffect(() => {
     if (record) {
@@ -25,7 +46,18 @@ const Timeline = ({ record }) => {
             color="yellow.900"
             fontWeight="black"
           />
-          <Text fontFamily="Roboto Mono" fontSize="0.9rem">
+          <Text
+            fontFamily="Roboto Mono"
+            fontSize="0.9rem"
+            onClick={(e) => {
+              console.log(e);
+              e.preventDefault();
+              e.stopPropagation();
+              e.nativeEvent.stopImmediatePropagation();
+              copyToClipboard(record.patientAddr);
+            }}
+            cursor="copy"
+          >
             {record.patientAddr.substr(0, 8) +
               "..." +
               record.patientAddr.substr(record.patientAddr.length - 6, 6)}
@@ -51,7 +83,18 @@ const Timeline = ({ record }) => {
               color={signs[0].status === "1" ? "whatsapp.900" : "red.900"}
               fontWeight="black"
             />
-            <Text fontFamily="Roboto Mono" fontSize="0.9rem">
+            <Text
+              fontFamily="Roboto Mono"
+              fontSize="0.9rem"
+              onClick={(e) => {
+                console.log(e);
+                e.preventDefault();
+                e.stopPropagation();
+                e.nativeEvent.stopImmediatePropagation();
+                copyToClipboard(signs[0].signer);
+              }}
+              cursor="copy"
+            >
               {signs[0].signer.substr(0, 8) +
                 "..." +
                 signs[0].signer.substr(signs[0].signer.length - 6, 6)}
@@ -78,7 +121,17 @@ const Timeline = ({ record }) => {
               color={signs[1].status === "1" ? "whatsapp.900" : "red.900"}
               fontWeight="black"
             />
-            <Text fontFamily="Roboto Mono" fontSize="0.9rem">
+            <Text
+              fontFamily="Roboto Mono"
+              fontSize="0.9rem"
+              onClick={(e) => {
+                console.log(e);
+                e.preventDefault();
+                e.stopPropagation();
+                e.nativeEvent.stopImmediatePropagation();
+                copyToClipboard(signs[1].signer);
+              }}
+            >
               {signs[1].signer.substr(0, 8) +
                 "..." +
                 signs[1].signer.substr(signs[1].signer.length - 6, 6)}

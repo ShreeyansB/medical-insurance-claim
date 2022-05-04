@@ -135,13 +135,13 @@ const ClaimItem = ({ record }) => {
                     fontFamily="Roboto Mono"
                     fontSize="0.77rem"
                     opacity={0.6}
-                    title={record.hospitalAddr}
+                    title={record.patientAddr}
                     onClick={(e) => {
                       console.log(e);
                       e.preventDefault();
                       e.stopPropagation();
                       e.nativeEvent.stopImmediatePropagation();
-                      copyToClipboard(record.hospitalAddr);
+                      copyToClipboard(record.patientAddr);
                     }}
                     cursor="copy"
                   >
@@ -158,7 +158,19 @@ const ClaimItem = ({ record }) => {
 
               {role === "insurer" && (
                 <Box>
-                  <Text fontWeight="medium" fontSize="0.9rem">
+                  <Text
+                    fontWeight="medium"
+                    fontSize="0.9rem"
+                    title={record.patientAddr}
+                    onClick={(e) => {
+                      console.log(e);
+                      e.preventDefault();
+                      e.stopPropagation();
+                      e.nativeEvent.stopImmediatePropagation();
+                      copyToClipboard(record.patientAddr);
+                    }}
+                    cursor="copy"
+                  >
                     Claimant:{" "}
                     {record.patientAddr.substr(0, 8) +
                       "..." +
