@@ -54,6 +54,8 @@ const ClaimItem = ({ record }) => {
     toast({
       title: "Copied to Clipboard",
       status: "info",
+      isClosable: true,
+      duration: 1000,
     });
   };
 
@@ -106,7 +108,6 @@ const ClaimItem = ({ record }) => {
                     opacity={0.6}
                     title={record.hospitalAddr}
                     onClick={(e) => {
-                      console.log(e);
                       e.preventDefault();
                       e.stopPropagation();
                       e.nativeEvent.stopImmediatePropagation();
@@ -137,7 +138,6 @@ const ClaimItem = ({ record }) => {
                     opacity={0.6}
                     title={record.patientAddr}
                     onClick={(e) => {
-                      console.log(e);
                       e.preventDefault();
                       e.stopPropagation();
                       e.nativeEvent.stopImmediatePropagation();
@@ -163,7 +163,6 @@ const ClaimItem = ({ record }) => {
                     fontSize="0.9rem"
                     title={record.patientAddr}
                     onClick={(e) => {
-                      console.log(e);
                       e.preventDefault();
                       e.stopPropagation();
                       e.nativeEvent.stopImmediatePropagation();
@@ -185,7 +184,6 @@ const ClaimItem = ({ record }) => {
                     opacity={0.6}
                     title={record.hospitalAddr}
                     onClick={(e) => {
-                      console.log(e);
                       e.preventDefault();
                       e.stopPropagation();
                       e.nativeEvent.stopImmediatePropagation();

@@ -24,6 +24,8 @@ const Timeline = ({ record }) => {
     toast({
       title: "Copied to Clipboard",
       status: "info",
+      isClosable: true,
+      duration: 1000,
     });
   };
 
@@ -50,7 +52,6 @@ const Timeline = ({ record }) => {
             fontFamily="Roboto Mono"
             fontSize="0.9rem"
             onClick={(e) => {
-              console.log(e);
               e.preventDefault();
               e.stopPropagation();
               e.nativeEvent.stopImmediatePropagation();
@@ -87,7 +88,6 @@ const Timeline = ({ record }) => {
               fontFamily="Roboto Mono"
               fontSize="0.9rem"
               onClick={(e) => {
-                console.log(e);
                 e.preventDefault();
                 e.stopPropagation();
                 e.nativeEvent.stopImmediatePropagation();
@@ -125,7 +125,6 @@ const Timeline = ({ record }) => {
               fontFamily="Roboto Mono"
               fontSize="0.9rem"
               onClick={(e) => {
-                console.log(e);
                 e.preventDefault();
                 e.stopPropagation();
                 e.nativeEvent.stopImmediatePropagation();

@@ -82,7 +82,7 @@ const SignForm = ({ onClose, record }) => {
           placeholder="Reason for approval/denial"
         />
       </FormControl>
-      <HStack float="right" my={4} spacing={5}>
+      <HStack float="right" my={4} spacing={5} pb={5}>
         <Button colorScheme="whatsapp" type="submit" isLoading={isLoading}>
           Submit
         </Button>
