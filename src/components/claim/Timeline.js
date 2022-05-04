@@ -70,7 +70,7 @@ const Timeline = ({ record }) => {
         </HStack>
 
         <Text fontSize="0.86rem" pt={1} fontStyle="italic" opacity={0.5}>
-          Claim raised by User.
+          Insurance Claim raised by Claimant.
         </Text>
       </VStack>
 
