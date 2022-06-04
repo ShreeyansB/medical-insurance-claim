@@ -3,6 +3,8 @@ This website was made as a concept for implementing the insurance claim process 
 
 ![Status](https://badgen.net/badge/icon/success?icon=vercel&label=vercel&color=68d290&labelColor=000000&scale=1.2)
 
+> If login doesnt work or if transactions don't load that means the servers are asleep and need to be restarted by us.
+
 ### How it Works
 1. User Signs Up on the website and enters their details.
 2. User files an Insurance Claim by filling details and uploading a pdf of medical and lab bills. The claim is then sent to the smart contract and the pdf is uploaded in storage. Pdf is hashed and the hash is stored on the blockchain to avoid any problems if a dispute occurs.
